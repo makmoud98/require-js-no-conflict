@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="https://requirejs.org/docs/release/2.3.6/comments/require.js"></script>
+        <script src="dep.require.2.3.6.js"></script>
+    </head>
+    <body>
+        <script>
+            // Get the body of the HTML
+            let body = document.querySelector('body');
+            // Create some elements
+            let label_1 = document.createElement("p");
+            let label_2 = document.createElement("p");
+            let label_3 = document.createElement("p");
+
+            // Sets the text of label_1 to the existing require version
+            // (this would be DealerOn's version)
+            label_1.innerText = require.version;
+
+            // Sets the text of text of label_2 to DEP's require version
+            label_2.innerText = dep.require.version;
+            (function(require) {
+                // Set the text of text of label_2 to DEP's require version
+                // since this is wrapped like this, you can still use the 
+                // require function like u normally would w/o conflict
+                label_3.innerText = require.version;
+            })(dep.require);
+
+            body.append(label_1);
+            body.append(label_2);
+            body.append(label_3);
+        </script>
+    </body>
+</html>
